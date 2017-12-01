@@ -5,6 +5,7 @@ import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 import akka.http.scaladsl.model.headers.RawHeader
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server.Directives._
+import common.ExtendedJsonSupport
 
 /**
   * Created by admin on 2017/12/1.
@@ -21,7 +22,8 @@ trait AkkaHttpExampleService extends SprayJsonSupport with ExtendedJsonSupport{
               Thread.sleep((Math.random()*1000).toInt+5000)
               println("sleeped...")
             }
-            println("@@@@")
+            println("@@@@".toInt)
+
             complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, flag+"<h1>Say hello to akka-http</h1>"+new Date().getTime))
           }
         }
