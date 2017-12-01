@@ -30,6 +30,7 @@ object Boot extends App with AkkaHttpExampleService{
         extractUri { uri =>
           val dateTime = CommonUtil.getCurrentDateTime
           System.err.println(s"[ERROR] [$dateTime] URL: $uri")
+          e.printStackTrace()
           complete(HttpResponse(InternalServerError, entity = "Error:"+e.toString))
         }
     }

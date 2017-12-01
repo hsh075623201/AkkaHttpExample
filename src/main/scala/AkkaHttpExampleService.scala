@@ -19,12 +19,11 @@ trait AkkaHttpExampleService extends SprayJsonSupport with ExtendedJsonSupport{
             println(option)
             if(flag=="1"){
               println("waiting...")
-              Thread.sleep((Math.random()*1000).toInt+5000)
+              Thread.sleep((Math.random()*1000).toInt+500)
               println("sleeped...")
             }
-            println("@@@@".toInt)
 
-            complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, flag+"<h1>Say hello to akka-http</h1>"+new Date().getTime))
+            complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, option+"<h1>Say hello to akka-http</h1>"+new Date().getTime))
           }
         }
       }~(path("hello") & post){
