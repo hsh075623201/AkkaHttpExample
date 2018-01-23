@@ -11,16 +11,18 @@ resolvers ++= Seq(
 )
 
 libraryDependencies ++= Seq(
- "com.typesafe.akka" %% "akka-http" % "10.0.10",
- "com.typesafe.akka" %% "akka-stream" % "2.5.4" ,
- "com.typesafe.akka" %% "akka-actor"  % "2.5.4",
- "com.typesafe.akka" %% "akka-http-spray-json" % "10.0.10",
- "io.spray" %% "spray-json" % "1.3.2",
+  "com.typesafe.akka" %% "akka-http" % "10.0.10",
+  "com.typesafe.akka" %% "akka-stream" % "2.5.4" ,
+  "com.typesafe.akka" %% "akka-actor"  % "2.5.4",
+  "com.typesafe.akka" %% "akka-http-spray-json" % "10.0.10",
+  "io.spray" %% "spray-json" % "1.3.2",
+  "net.debasishg" %% "redisclient" % "3.0",
   "org.apache.hbase" % "hbase-server" % "1.2.0-cdh5.12.1",
-"org.apache.hbase" % "hbase-client" % "1.2.0-cdh5.12.1",
-"org.apache.hbase" % "hbase-common" % "1.2.0-cdh5.12.1",
-"org.apache.hadoop" % "hadoop-common" % "2.6.0-cdh5.12.1",
-  "net.debasishg" %% "redisclient" % "3.0"
+  "org.apache.hbase" % "hbase-client" % "1.2.0-cdh5.12.1",
+  "org.apache.hbase" % "hbase-common" % "1.2.0-cdh5.12.1",
+  "org.apache.hadoop" % "hadoop-common" % "2.6.0-cdh5.12.1",
+  "mysql" % "mysql-connector-java" % "5.1.12",
+  "com.alibaba" % "druid" % "1.0.27"
 
 )
 
