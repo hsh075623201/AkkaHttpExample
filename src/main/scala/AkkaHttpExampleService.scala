@@ -6,6 +6,8 @@ import akka.http.scaladsl.model.headers.RawHeader
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server.Directives._
 import com.aihuishou.common.ExtendedJsonSupport
+import com.aihuishou.hbase.hbaseRoute
+import com.aihuishou.utils.CommonUtil
 import hbase.hbaseRoute
 
 /**
@@ -29,7 +31,7 @@ trait AkkaHttpExampleService extends SprayJsonSupport with ExtendedJsonSupport w
               complete("aaaaa")
             }else{
               Thread.sleep(w)
-              complete(w.toString)
+              complete(CommonUtil.warpResponse(w.toString))
             }
           }
         }

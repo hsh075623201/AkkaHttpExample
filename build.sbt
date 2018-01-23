@@ -6,7 +6,8 @@ scalaVersion := "2.12.4"
 
 resolvers ++= Seq(
   "Apache Repository" at "https://repository.apache.org/content/repositories/releases/",
-  "Cloudera repo" at "https://repository.cloudera.com/artifactory/cloudera-repos/"
+  "Cloudera repo" at "https://repository.cloudera.com/artifactory/cloudera-repos/",
+  "aliyun maven" at "http://maven.aliyun.com/nexus/content/groups/public/"
 )
 
 libraryDependencies ++= Seq(
@@ -18,7 +19,8 @@ libraryDependencies ++= Seq(
   "org.apache.hbase" % "hbase-server" % "1.2.0-cdh5.12.1",
 "org.apache.hbase" % "hbase-client" % "1.2.0-cdh5.12.1",
 "org.apache.hbase" % "hbase-common" % "1.2.0-cdh5.12.1",
-"org.apache.hadoop" % "hadoop-common" % "2.6.0-cdh5.12.1"
+"org.apache.hadoop" % "hadoop-common" % "2.6.0-cdh5.12.1",
+  "net.debasishg" %% "redisclient" % "3.0"
 
 )
 

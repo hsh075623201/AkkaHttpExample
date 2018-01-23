@@ -25,6 +25,7 @@ trait ExtendedJsonSupport extends DefaultJsonProtocol {
       case s: String => JsString(s)
       case b: Boolean => if (b) JsTrue else JsFalse
       case l: List[Any] => JsArray(l.toVector.map(v => write(v)))
+      case h: Set[Any] => JsArray(h.toVector.map(v => write(v)))
       case m: Map[String, Any] => {
         JsObject(m.map { case (k, v) => (k, write(v)) })
       }
