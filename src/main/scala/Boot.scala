@@ -19,7 +19,6 @@ object Boot extends App with AkkaHttpExampleService{
 
   implicit val system = ActorSystem("AkkaHttpExampleSystem")
   implicit val materializer = ActorMaterializer()
-
   // needed for the future flatMap/onComplete in the end
   implicit val executionContext = system.dispatcher
 
@@ -40,7 +39,8 @@ object Boot extends App with AkkaHttpExampleService{
 
   // logs just the request method and response status at info level
   def requestMethodAndResponseStatusAsInfo(req: HttpRequest): RouteResult => Option[LogEntry] = {
-    case RouteResult.Complete(res) => Some(LogEntry("Method:"+req.method.name+
+    case RouteResult.Complete(res) => Some(LogEntry(
+      "Method:"+req.method.name+
       "\nURL:"+req.uri +
       "\n"+req.headers.head +
       "\nbody:"+req.entity +

@@ -5,36 +5,43 @@ import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 import akka.http.scaladsl.model.headers.RawHeader
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server.Directives._
-import common.ExtendedJsonSupport
+import com.aihuishou.common.ExtendedJsonSupport
+import hbase.hbaseRoute
 
 /**
   * Created by admin on 2017/12/1.
   */
-trait AkkaHttpExampleService extends SprayJsonSupport with ExtendedJsonSupport{
+trait AkkaHttpExampleService extends SprayJsonSupport with ExtendedJsonSupport with hbaseRoute{
   val AkkaHttpExampleRoutes = respondWithHeader(RawHeader("Access-Control-Allow-Origin", "*")){
     pathPrefix("hank"){
       (path("hello") & get){
-        parameters("flag","option".?) {
+        parameters("flag","option") {
           (flag,option)=>{
-            println(option)
-            if(flag=="1"){
-              println("waiting...")
-              Thread.sleep((Math.random()*1000).toInt+500)
-              println("sleeped...")
+            var w = 1000+(Math.random()*500).toInt
+
+            if(option.toInt % 7 ==0){
+              w+=((Math.random()*1000).toInt+1500)
             }
 
-            complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, option+"<h1>Say hello to akka-http</h1>"+new Date().getTime))
+
+            if(option=="10000"){
+              Thread.sleep(100)
+              complete("aaaaa")
+            }else{
+              Thread.sleep(w)
+              complete(w.toString)
+            }
           }
         }
       }~(path("hello") & post){
-       entity(as[Map[String,String]]){
+       entity(as[List[Map[String,String]]]){
          data=>{
            complete{
-             data.getOrElse("flag","sdfsf").toString
+             data.map(_.getOrElse("flag","sdfsf")).mkString(",")
            }
          }
        }
-      }
+      }~HBaseRouteReport
     }
   }
 

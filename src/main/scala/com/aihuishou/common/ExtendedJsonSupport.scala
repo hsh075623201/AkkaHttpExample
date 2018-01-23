@@ -1,4 +1,4 @@
-package common
+package com.aihuishou.common
 
 /**
   * Created by admin on 2017/12/1.
